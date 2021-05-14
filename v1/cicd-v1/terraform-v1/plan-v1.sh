@@ -26,6 +26,6 @@ docker run \
 	sh -c "
 		rm -rf ./.terraform
 		terraform init
-		plan -lock-timeout=1200s
+		terraform plan -lock-timeout=1200s
 	"
 
