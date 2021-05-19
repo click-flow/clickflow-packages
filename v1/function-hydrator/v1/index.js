@@ -1,3 +1,4 @@
+const { invokeLambda } = require('./utils/invoke-lambda')
 const { v5: { createCloudeventStream } } = require('@1mill/cloudevents')
 
 // * For each single cloudevent we only want to invoke a function once.
@@ -15,5 +16,19 @@ const functionMaps = [
 // * can subscribe to.
 const types = [...new Set(functionMaps.map(m => m.type))]
 
-console.log(functionMaps)
-console.log(types)
+const google = functionMaps.filter(m => m.functionType === 'google')
+const imb = functionMaps.filter(m => m.functionType === 'imb')
+const lambdas = functionMaps.filter(m => m.functionType === 'lambda')
+
+createCloudeventStream({}).listen({
+	handler: ({ cloudevent }) => {
+		lambdas
+			.filter(m => m.type === cloudevent.type)
+			.forEach(m => invokeLambda({
+				cloudevent,
+				functionId: m.functionId,
+				functionType: m.functionType,
+			}))
+	},
+	types,
+})

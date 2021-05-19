@@ -4,13 +4,23 @@ services:
   app:
     build: .
     environment:
+      AWS_ACCESS_KEY_ID: development
+      AWS_ENDPOINT: localhost:4566
+      AWS_REGION: us-east-1
+      AWS_SECRET_ACCESS_KEY: development
+      CLOUDEVENT_STREAM_ID: function-hydrator-v1-able
+      CLOUDEVENT_STREAM_PROTOCOL: kafka
+      CLOUDEVENT_STREAM_URLS: rapids:9092
       FUNCTION_MAPS: '[
         { "functionId": "a", "functionType": "lambda", "type": "type-1" },
         { "functionId": "a", "functionType": "lambda", "type": "type-1" },
+        { "functionId": "a", "functionType": "imb", "type": "type-1" },
+        { "functionId": "a", "functionType": "google", "type": "type-1" },
         { "functionId": "b", "functionType": "lambda", "type": "type-1" },
         { "functionId": "b", "functionType": "lambda", "type": "type-2" },
         { "functionId": "c", "functionType": "lambda", "type": "type-3" }
       ]'
       NODE_ENV: development
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
     # volumes:
     #   - ./:/app
