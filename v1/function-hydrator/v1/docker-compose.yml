@@ -4,6 +4,13 @@ services:
   app:
     build: .
     environment:
+      FUNCTION_MAPS: '[
+        { "functionId": "a", "functionType": "lambda", "type": "type-1" },
+        { "functionId": "a", "functionType": "lambda", "type": "type-1" },
+        { "functionId": "b", "functionType": "lambda", "type": "type-1" },
+        { "functionId": "b", "functionType": "lambda", "type": "type-2" },
+        { "functionId": "c", "functionType": "lambda", "type": "type-3" }
+      ]'
       NODE_ENV: development
     # volumes:
     #   - ./:/app
