@@ -15,13 +15,17 @@ if (process.env.FUNCTION_MAPS_FILE) {
 // * So we remove any duplicate function maps.
 const functionMaps = [
 	...new Set([
-		...JSON.parse(
-			fileMaps || JSON.stringify([])
-		).map(m => JSON.stringify(m)),
-		...JSON.parse(
-			process.env.FUNCTION_MAPS || JSON.stringify([])
-		).map(m => JSON.stringify(m)),
-	])
+		...JSON.parse(fileMaps || JSON.stringify([])),
+		...JSON.parse(process.env.FUNCTION_MAPS || JSON.stringify([])),
+	].map(m => {
+		const override = JSON.parse(process.env.FUNCTION_OVERRIDE || JSON.stringify({}))
+		return JSON.stringify({
+			...m,
+			functionId: override.functionId || m.functionId,
+			functionType: override.functionType || m.functionType,
+			type: override.type || m.type,
+		})
+	}))
 ].map(m => JSON.parse(m))
 
 // * For reach cloudevent type we only want to create one subscription
