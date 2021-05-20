@@ -24,9 +24,6 @@ const functionMaps = [
 	])
 ].map(m => JSON.parse(m))
 
-console.log(functionMaps)
-return
-
 // * For reach cloudevent type we only want to create one subscription
 // * per type. So this returns a list of unique cloudevent types we
 // * can subscribe to.
