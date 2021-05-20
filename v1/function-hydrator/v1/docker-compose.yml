@@ -21,6 +21,7 @@ services:
         { "functionId": "b", "functionType": "lambda", "type": "type-2" },
         { "functionId": "c", "functionType": "lambda", "type": "type-3" }
       ]'
+      # FUNCTION_MAPS_FILE: ./function-maps.json
       NODE_ENV: development
       NODE_TLS_REJECT_UNAUTHORIZED: 0
     # volumes:
