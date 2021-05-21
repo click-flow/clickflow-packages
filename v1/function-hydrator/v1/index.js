@@ -1,13 +1,22 @@
 const fs = require('fs')
 const { invokeLambda } = require('./utils/invoke-lambda')
-const { v5: { createCloudeventStream } } = require('@1mill/cloudevents')
+const { v5: { createCloudeventStream } } = require('@1mill/cloudevents');
 
-let fileMaps
-if (process.env.FUNCTION_MAPS_FILE) {
+const fileMaps = []
+const functionsDir = process.env.FUNCTIONS_DIR
+if (functionsDir) {
 	try {
-		fileMaps = fs.readFileSync(process.env.FUNCTION_MAPS_FILE, 'utf8')
-	} catch (err) {
-		console.error(err)
+		fs
+		.readdirSync(functionsDir)
+		.filter(file => file.endsWith('.json'))
+		.map(file => `${functionsDir}/${file}`)
+		.map(path => fs.readFileSync(path, 'utf8'))
+		.map(json => JSON.parse(json || '[]'))
+		.forEach(array => {
+			array.forEach(item => fileMaps.push(item))
+		})
+	} catch(err) {
+		throw new Error(err)
 	}
 }
 
@@ -15,10 +24,10 @@ if (process.env.FUNCTION_MAPS_FILE) {
 // * So we remove any duplicate function maps.
 const functionMaps = [
 	...new Set([
-		...JSON.parse(fileMaps || JSON.stringify([])),
-		...JSON.parse(process.env.FUNCTION_MAPS || JSON.stringify([])),
+		...JSON.parse(process.env.FUNCTIONS || JSON.stringify([])),
+		...fileMaps,
 	].map(m => {
-		const override = JSON.parse(process.env.FUNCTION_OVERRIDE || JSON.stringify({}))
+		const override = JSON.parse(process.env.FUNCTIONS_OVERRIDE || JSON.stringify({}))
 		return JSON.stringify({
 			...m,
 			functionId: override.functionId || m.functionId,

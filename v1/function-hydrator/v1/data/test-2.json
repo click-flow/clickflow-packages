@@ -1,0 +1,27 @@
+[
+    {
+        "functionId": "e",
+        "functionType": "lambda",
+        "type": "type-2"
+    },
+    {
+        "functionId": "e",
+        "functionType": "lambda",
+        "type": "type-3"
+    },
+    {
+        "functionId": "f",
+        "functionType": "lambda",
+        "type": "type-3"
+    },
+    {
+        "functionId": "g",
+        "functionType": "lambda",
+        "type": "type-2"
+    },
+    {
+        "functionId": "h",
+        "functionType": "lambda",
+        "type": "type-1"
+    }
+]

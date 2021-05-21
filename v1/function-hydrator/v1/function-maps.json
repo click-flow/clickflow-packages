@@ -1,7 +1,0 @@
-[
-  { "functionId": "b", "functionType": "lambda", "type": "type-2" },
-  { "functionId": "c", "functionType": "lambda", "type": "type-3" },
-  { "functionId": "d", "functionType": "lambda", "type": "type-3" },
-  { "functionId": "e", "functionType": "lambda", "type": "type-2" },
-  { "functionId": "g", "functionType": "lambda", "type": "type-1" }
-]

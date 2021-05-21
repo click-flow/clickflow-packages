@@ -12,7 +12,7 @@ services:
       CLOUDEVENT_STREAM_ID: function-hydrator-v1-able
       CLOUDEVENT_STREAM_PROTOCOL: kafka
       CLOUDEVENT_STREAM_URLS: rapids:9092
-      FUNCTION_MAPS: '[
+      FUNCTIONS: '[
         { "functionId": "a", "functionType": "lambda", "type": "type-1" },
         { "functionId": "a", "functionType": "lambda", "type": "type-1" },
         { "functionId": "a", "functionType": "imb", "type": "type-1" },
@@ -21,9 +21,9 @@ services:
         { "functionId": "b", "functionType": "lambda", "type": "type-2" },
         { "functionId": "c", "functionType": "lambda", "type": "type-3" }
       ]'
-      # FUNCTION_MAPS_FILE: ./function-maps.json
-      # FUNCTION_OVERRIDE: '{ "functionId": "river-alpha-from-rapids-lambda-v0", "functionType": "lambda" }'
+      FUNCTIONS_DIR: ./data
+      # FUNCTIONS_OVERRIDE: '{ "functionId": "river-alpha-from-rapids-lambda-v0", "functionType": "lambda" }'
       NODE_ENV: development
       NODE_TLS_REJECT_UNAUTHORIZED: 0
-    # volumes:
-    #   - ./:/app
+    volumes:
+      - ./:/app
