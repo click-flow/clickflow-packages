@@ -22,7 +22,7 @@ docker run \
 	--env TF_VAR_VERSION=$SOURCE_VERSION \
 	--rm \
 	--volume $SOURCE_DIRECTORY:/app \
-	-it \
+	-i \
 	$TERRAFORM_IMAGE \
 	sh
 
