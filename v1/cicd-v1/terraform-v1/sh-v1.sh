@@ -1,4 +1,4 @@
-# !/bin/sh
+# !/bin/bash
 
 set -e
 
@@ -22,7 +22,7 @@ docker run \
 	--env TF_VAR_VERSION=$SOURCE_VERSION \
 	--rm \
 	--volume $SOURCE_DIRECTORY:/app \
-	-i \
+	-it \
 	$TERRAFORM_IMAGE \
 	sh
 
