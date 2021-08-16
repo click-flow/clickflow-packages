@@ -22,6 +22,7 @@ docker run \
 	--env TF_VAR_VERSION=$SOURCE_VERSION \
 	--rm \
 	--volume $SOURCE_DIRECTORY:/app \
+	--volume /var/run/docker.sock:/var/run/docker.sock \
 	-i \
 	$TERRAFORM_IMAGE \
 	sh
